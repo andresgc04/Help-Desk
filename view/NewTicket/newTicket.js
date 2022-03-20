@@ -1,21 +1,25 @@
 function init(){
-    $("#ticket_form").on("submit", function(e){
+    $("#ticket_form").on("submit", function(e)
+    {
         GuardaryEditar(e);
     });
 }
 
-$(document).ready(function() {
+$(document).ready(function() 
+{
     $('#Descripcion_Ticket').summernote
     ({
         height:150
     });
 
-    $.post("../../controller/CategoriasController.php?op=combo",function(data, status){
+    $.post("../../controller/CategoriasController.php?op=combo",function(data, status)
+    {
         $('#CategoriaID').html(data);
     });
 });
 
-function GuardaryEditar(e){
+function GuardaryEditar(e)
+{
     e.preventDefault();
     var formData = new FormData($("#ticket_form")[0]);
 
@@ -25,12 +29,14 @@ function GuardaryEditar(e){
         data: formData,
         contentType: false,
         processData: false,
-        success: function(datos){
+        success: function(datos)
+        {
             $("#Titulo_Ticket").val('');
             $("#Descripcion_Ticket").summernote('reset');
             swal("Correcto!", "Registro realizado con exito", "success");
         },
-        error: function(datos){
+        error: function(datos)
+        {
             console.log(datos);
         }
     });
