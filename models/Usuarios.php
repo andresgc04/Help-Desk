@@ -28,6 +28,7 @@ class Usuarios extends Conectar
                 if(is_array($resultado) and count($resultado)>0)
                 {
                     $_SESSION["UsuarioID"]=$resultado["UsuarioID"];
+                    $_SESSION["RolId"]=$resultado["RolID"];
                     $_SESSION["Usuario_Nombre"]=$resultado["Usuario_Nombre"];
                     $_SESSION["Usuario_Apellido"]=$resultado["Usuario_Apellido"];
                     
