@@ -40,5 +40,29 @@ class Tickets extends Conectar{
 
         return $resultado = $sql -> fetchAll();
     }
+
+    public function listar_tickets(){
+        $conectar = parent::Conexion();
+        parent::set_names();
+
+        $sql = "SELECT 
+                tm_tickets.TicketID, 
+                tm_tickets.UsuarioID, 
+                tm_tickets.CategoriaID, 
+                tm_tickets.Titulo_Ticket, 
+                tm_tickets.Descripcion_Ticket, 
+                tm_tickets.Fecha_Creacion,
+                tm_usuarios.Usuario_Nombre, 
+                tm_usuarios.Usuario_Apellido, 
+                tm_categorias.Nombre_Categoria 
+                FROM tm_tickets 
+                INNER JOIN tm_categorias ON tm_tickets.CategoriaID = tm_categorias.CategoriaID 
+                INNER JOIN tm_usuarios ON tm_tickets.UsuarioID = tm_usuarios.UsuarioID 
+                WHERE tm_tickets.Estado = 1";
+        $sql = $conectar -> prepare($sql);
+        $sql -> execute();
+
+        return $resultado = $sql -> fetchAll();
+    }
 }
 ?>
