@@ -17,6 +17,15 @@ switch ($_GET["op"]) {
             $sub_array[] = $row["TicketID"];
             $sub_array[] = $row["Titulo_Ticket"];
             $sub_array[] = $row["Nombre_Categoria"];
+
+            if ($row["Estado"] == "Abierto") {
+                $sub_array[] = '<span class="label label-pill label-success">Abierto</span>';
+            }
+
+            if ($row["Estado"] == "Cerrado") {
+                $sub_array[] = '<span class="label label-pill label-danger">Cerrado</span>';
+            }
+
             $sub_array[] = date("d/m/Y H:i:s", strtotime($row["Fecha_Creacion"]));
             $sub_array[] = '<button type="button" onClick="ver(' . $row["TicketID"] . ');" id="' . $row["TicketID"] . '" class="btn btn-inline btn-primary btn-sm ladda-button"><div><i class="fa fa-eye"></i></div></button>';
             $data[] = $sub_array;
@@ -40,6 +49,15 @@ switch ($_GET["op"]) {
             $sub_array[] = $row["TicketID"];
             $sub_array[] = $row["Titulo_Ticket"];
             $sub_array[] = $row["Nombre_Categoria"];
+
+            if ($row["Estado"] == "Abierto") {
+                $sub_array[] = '<span class="label label-pill label-success">Abierto</span>';
+            }
+
+            if ($row["Estado"] == "Cerrado") {
+                $sub_array[] = '<span class="label label-pill label-danger">Cerrado</span>';
+            }
+
             $sub_array[] = date("d/m/Y H:i:s", strtotime($row["Fecha_Creacion"]));
             $sub_array[] = '<button type="button" onClick="ver(' . $row["TicketID"] . ');" id="' . $row["TicketID"] . '" class="btn btn-inline btn-primary btn-sm ladda-button"><div><i class="fa fa-eye"></i></div></button>';
             $data[] = $sub_array;

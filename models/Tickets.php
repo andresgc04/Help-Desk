@@ -4,7 +4,7 @@ class Tickets extends Conectar{
         $conectar = parent::Conexion();
         parent::set_names();
 
-        $sql="INSERT INTO tm_tickets (TicketID,UsuarioID,CategoriaID,Titulo_Ticket,Descripcion_Ticket,Fecha_Creacion,Estado) VALUES (NULL,?,?,?,?,now(),'1');";
+        $sql="INSERT INTO tm_tickets (TicketID,UsuarioID,CategoriaID,Titulo_Ticket,Descripcion_Ticket,Fecha_Creacion,EstadoID) VALUES (NULL,?,?,?,?,now(),'1');";
         $sql=$conectar->prepare($sql);
         $sql->bindValue(1, $UsuarioID);
         $sql->bindValue(2, $CategoriaID);
@@ -25,6 +25,7 @@ class Tickets extends Conectar{
                 tm_tickets.CategoriaID, 
                 tm_tickets.Titulo_Ticket, 
                 tm_tickets.Descripcion_Ticket, 
+                tm_estados.Estado,
                 tm_tickets.Fecha_Creacion,
                 tm_usuarios.Usuario_Nombre, 
                 tm_usuarios.Usuario_Apellido, 
@@ -32,7 +33,8 @@ class Tickets extends Conectar{
                 FROM tm_tickets 
                 INNER JOIN tm_categorias ON tm_tickets.CategoriaID = tm_categorias.CategoriaID 
                 INNER JOIN tm_usuarios ON tm_tickets.UsuarioID = tm_usuarios.UsuarioID 
-                WHERE tm_tickets.Estado = 1 
+                INNER JOIN tm_estados ON tm_tickets.EstadoID = tm_estados.EstadoID
+                WHERE tm_tickets.EstadoID = 1 
                 AND tm_usuarios.UsuarioID=?";
         $sql = $conectar -> prepare($sql);
         $sql -> bindValue(1,$UsuarioID);
@@ -51,6 +53,7 @@ class Tickets extends Conectar{
                 tm_tickets.CategoriaID, 
                 tm_tickets.Titulo_Ticket, 
                 tm_tickets.Descripcion_Ticket, 
+                tm_estados.Estado,
                 tm_tickets.Fecha_Creacion,
                 tm_usuarios.Usuario_Nombre, 
                 tm_usuarios.Usuario_Apellido, 
@@ -58,7 +61,8 @@ class Tickets extends Conectar{
                 FROM tm_tickets 
                 INNER JOIN tm_categorias ON tm_tickets.CategoriaID = tm_categorias.CategoriaID 
                 INNER JOIN tm_usuarios ON tm_tickets.UsuarioID = tm_usuarios.UsuarioID 
-                WHERE tm_tickets.Estado = 1";
+                INNER JOIN tm_estados ON tm_tickets.EstadoID = tm_estados.EstadoID
+                WHERE tm_tickets.EstadoID = 1";
         $sql = $conectar -> prepare($sql);
         $sql -> execute();
 
