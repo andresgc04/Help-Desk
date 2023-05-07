@@ -18,7 +18,7 @@ class Usuarios extends Conectar
             }
             else
             {
-                $sql = "SELECT * FROM tm_usuarios WHERE Usuario_Correo=? AND Usuario_Pass=? AND Estado = 1";
+                $sql = "SELECT * FROM tm_usuarios WHERE Usuario_Correo=? AND Usuario_Pass=? AND EstadoID = 1";
                 $stmt = $conectar->prepare($sql);
                 $stmt->bindValue(1, $correo);
                 $stmt->bindValue(2,$pass);

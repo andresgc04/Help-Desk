@@ -4,7 +4,7 @@ class Categorias extends Conectar{
         $conectar = parent::Conexion();
         parent::set_names();
 
-        $sql = "SELECT * FROM tm_categorias WHERE Estado = 1;";
+        $sql = "SELECT * FROM tm_categorias WHERE EstadoID = 1;";
         $sql = $conectar -> prepare($sql);
         $sql->execute();
 

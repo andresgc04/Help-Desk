@@ -9,6 +9,8 @@ switch($_GET["op"]){
         $datos = $categorias -> getCategorias();
         if(is_array($datos) == true and count($datos)>0){
 
+            $html .= "<option selected disabled>Por Favor Seleccione La Categoría Correspondiente.</option>";
+            
             foreach($datos as $row)
             {
                 $html.="<option value = '".$row['CategoriaID']."'>".$row['Nombre_Categoria']."</option>";
