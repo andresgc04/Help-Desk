@@ -50,8 +50,7 @@ if(isset($_SESSION["UsuarioID"]))
 						<div class="col-lg-6">
 							<fieldset class="form-group">
 								<label class="form-label semibold" for="exampleInput">Categoria:</label>
-								<select id="CategoriaID" name="CategoriaID" class="form-control">
-								</select>
+								<select id="CategoriaID" name="CategoriaID" class="form-control"></select>
 							</fieldset>
 						</div>
 						<div class="col-lg-6">

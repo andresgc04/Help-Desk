@@ -47,9 +47,7 @@ if(isset($_SESSION["UsuarioID"]))
 							<th class="text-center" style="width: 5%;"></th>
 						</tr>
 					</thead>
-					<tbody>
-
-					</tbody>
+					<tbody></tbody>
 				</table>
 			</div>
 		</div>

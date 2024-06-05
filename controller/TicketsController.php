@@ -72,4 +72,52 @@ switch ($_GET["op"]) {
 
         echo json_encode($results);
         break;
+
+    case "listarTicketDetalle":
+        $datos = $tickets->listar_ticket_detalle_x_ticket($_POST['ticketID']);
+?>
+        <?php
+        foreach ($datos as $row) {
+        ?>
+            <article class="activity-line-item box-typical">
+                <div class="activity-line-date">
+                    <?php echo date("d/m/Y", strtotime($row['Fecha_Creacion'])); ?>
+                </div>
+                <header class="activity-line-item-header">
+                    <div class="activity-line-item-user">
+                        <div class="activity-line-item-user-photo">
+                            <a href="#">
+                                <img src="../../public/img/photo-64-2.jpg" alt="">
+                            </a>
+                        </div>
+                        <div class="activity-line-item-user-name"><?php echo $row['Usuario_Nombre'] . ' ' . $row['Usuario_Apellido']; ?></div>
+                        <div class="activity-line-item-user-status">
+                            <?php
+                            if ($row['ROLID'] == 1) {
+                                echo 'Usuario';
+                            } else {
+                                echo 'Soporte';
+                            }
+                            ?>
+                        </div>
+                    </div>
+                </header>
+                <div class="activity-line-action-list">
+                    <section class="activity-line-action">
+                        <div class="time"><?php echo date("H:i:s", strtotime($row['Fecha_Creacion'])); ?></div>
+                        <div class="cont">
+                            <div class="cont-in">
+                                <p><?php echo $row['Descripcion_Ticket_Detalle']; ?></p>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </article>
+        <?php
+        }
+        ?>
+
+<?php
+        break;
 }
+?>

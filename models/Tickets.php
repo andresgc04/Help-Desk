@@ -34,7 +34,7 @@ class Tickets extends Conectar{
                 INNER JOIN tm_categorias ON tm_tickets.CategoriaID = tm_categorias.CategoriaID 
                 INNER JOIN tm_usuarios ON tm_tickets.UsuarioID = tm_usuarios.UsuarioID 
                 INNER JOIN tm_estados ON tm_tickets.EstadoID = tm_estados.EstadoID
-                WHERE tm_tickets.EstadoID = 1 
+                WHERE tm_tickets.EstadoID = 1 OR tm_tickets.EstadoID = 2
                 AND tm_usuarios.UsuarioID=?";
         $sql = $conectar -> prepare($sql);
         $sql -> bindValue(1,$UsuarioID);
@@ -68,5 +68,22 @@ class Tickets extends Conectar{
 
         return $resultado = $sql -> fetchAll();
     }
+
+    public function listar_ticket_detalle_x_ticket($ticketID){
+        $conectar = parent::Conexion();
+        parent::set_names();
+
+        $sql = "SELECT ticketsDetalles.TicketID, ticketsDetalles.Ticket_DetalleID, ticketsDetalles.UsuarioID, usuarios.ROLID,
+                       ticketsDetalles.Descripcion_Ticket_Detalle, ticketsDetalles.Fecha_Creacion,
+                       usuarios.Usuario_Nombre, usuarios.Usuario_Apellido
+                  FROM td_tickets_detalles ticketsDetalles
+            INNER JOIN tm_usuarios usuarios 
+                    ON ticketsDetalles.UsuarioID = usuarios.UsuarioID
+                 WHERE ticketsDetalles.TicketID = ?";
+        $sql = $conectar -> prepare($sql);
+        $sql -> bindValue(1,$ticketID);
+        $sql -> execute();
+
+        return $resultado = $sql -> fetchAll();
+    }
 }
-?>
